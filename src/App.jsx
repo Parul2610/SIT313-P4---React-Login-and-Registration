@@ -6,6 +6,9 @@ import FeaturedSection from "./FeaturedSection";
 import Gallery from "./Gallery";
 import Subscribe from "./Subscribe";
 import Footer from "./Footer";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Signup from "./Signup";
+import Login from "./Login";
 
 import "./App.css";
 
@@ -73,47 +76,66 @@ function App() {
     ];
 
 
-    return (
-        <div className="App">
-
-            <Navigation />
-
-            <Banner />
-
-            <Profile />
-
-            <Projects />
-             <Gallery />
+   
 
 
-            {/* Featured Articles */}
 
-            <FeaturedSection
-                title="Featured Articles"
+
+return (
+  <BrowserRouter>
+    <div className="App">
+      <Navigation />
+
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <Banner />
+              <Profile />
+              <Projects />
+              <Gallery />
+
+              <FeaturedSection
+                title="Latest Articles"
                 items={articles}
-                buttonText="See all articles"
                 personLabel="Author"
-            />
+                buttonText="Read More"
+              />
 
-
-            {/* Featured Tutorials */}
-
-            <FeaturedSection
-                title="Featured Tutorials"
+              <FeaturedSection
+                title="Popular Tutorials"
                 items={tutorials}
-                buttonText="See all tutorials"
                 personLabel="Instructor"
-            />
+                buttonText="Start Learning"
+              />
+
+              <Subscribe />
+            </>
+          }
+        />
+
+        <Route
+          path="/login"
+          element={<Login />}
+        />
+
+        <Route
+          path="/signup"
+          element={<Signup />}
+        />
+      </Routes>
+
+      <Footer />
+    </div>
+  </BrowserRouter>
+);
 
 
-           
 
-            <Subscribe />
-
-            <Footer />
-
-        </div>
-    );
 }
 
 export default App;
+
+
+
